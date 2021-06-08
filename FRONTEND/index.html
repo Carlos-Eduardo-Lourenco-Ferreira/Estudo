@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /*
+            table{
+                margin-top: 80px;
+            }
+            table, tr, td, th{
+                border: 1px solid #000;
+                padding: 10px;
+            }
+            td, th{
+                padding-right: 100px;
+                padding-bottom: 10px;
+            }
+            */
+        </style>
+        <script>
+            /*
+            function calcular(){
+                let n1 = Number(document.getElementById('n1').value)
+                let operacao = document.getElementById('operacao').value
+                let n2 = Number(document.getElementById('n2').value)
+
+                let teste = new Object()
+                teste.n1 = n1
+                teste.operacao = operacao
+                teste.n2 = n2
+
+                let request = new XMLHttpRequest()
+                request.open('POST', 'http://localhost:8080/teste', true)
+                request.onload = function () {
+                    if ((request.status >= 200) && (request.status <= 400)) {
+                        console.log(`Conxão OK`)
+                    }
+                    else {
+                        console.log(`Problema de conexão`)
+                    }
+                }
+                request.setRequestHeader('Content-Type', 'application/json')
+                request.send(JSON.stringify(teste))
+                console.log('Calculo realizado com sucesso')
+                consultar()
+            }
+
+            function consultar(){
+                let request = new XMLHttpRequest()
+                request.open('GET', 'http://localhost:8080/teste', true)
+                request.onload = function(){
+                    let testes = JSON.parse(this.response)
+                    let saida = ''
+                    testes.forEach(teste => {
+                        saida = saida + `<tr> <td> ${teste.n1} </td> 
+                            <td> ${teste.operacao} </td> <td> ${teste.n2} </td>
+                            <td> ${teste.resp} </td> </tr>`
+                    })
+                    document.getElementById('content').innerHTML = saida
+                }
+                request.send()
+            }
+            */
+
+            function verificar(){
+                let nome = document.getElementById('username').value
+                let pass = document.getElementById('senha').value
+
+                let obj = new Object()
+                obj.username = nome
+                obj.senha = pass
+
+                let request = new XMLHttpRequest()
+                request.open('POST', 'http://localhost:8080/teste', true)
+                request.onload = function () {
+                    if ((request.status >= 200) && (request.status <= 400)) {
+                        console.log(`Conxão OK`)
+                    }
+                    else {
+                        console.log(`Problema de conexão`)
+                    }
+                }
+
+                request.setRequestHeader('Access-Control-Request-Method', 'aplication/json')
+                request.send(JSON.stringify(obj))
+            }
+
+        </script>
+    </head>
+    <body>
+        <form>
+            Insira o nome do usuario
+            <input type="text" id="username"> <br><br>
+            Insira a senha
+            <input type="password" id="senha"><br><br>
+            <button onClick="verificar()" type="button">check</button>
+        </form>
+        <!--
+        <table>
+            <theader>
+                <th>N1</th>
+                <th>Operacao</th>
+                <th>N2</th>
+                <th>Resultado</th>
+            </theader>
+            <tbody id="content">
+
+            </tbody>
+        </table>
+        -->
+    </body>
+</html>
